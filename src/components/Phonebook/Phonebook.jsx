@@ -3,20 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Title } from './Title/Title';
-import { addContact, deleteContactById } from 'redux/contactsSlice';
+import { addContact, deleteContactById } from 'redux/operations';
 import { setFilter } from 'redux/filterSlice';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
+import { fetchContacts } from 'redux/operations';
 import css from './Phonebook.module.css';
 export const Phonebook = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const addContactHandle = (e, newContact) => {
     e.preventDefault();
@@ -66,7 +67,7 @@ export const Phonebook = () => {
 
       <Title title="Contacts" />
       <ContactList
-        contacts={contacts}
+        contacts={contacts || []}
         deleteContactHandle={deleteContactHandle}
       />
     </div>

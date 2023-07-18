@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { setFilter } from 'redux/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilter } from 'redux/selectors';
+import { selectFilter } from 'redux/selectors';
 import css from './../Phonebook.module.css';
 
 export const ContactList = ({ contacts, deleteContactHandle }) => {
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
   const filterContacts = (filter, contacts) => {
     return contacts.filter(
