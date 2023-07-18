@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { setFilter } from 'redux/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter } from 'redux/selectors';
+import { selectContactsAreLoading } from 'redux/selectors';
 import css from './../Phonebook.module.css';
 
 export const ContactList = ({ contacts, deleteContactHandle }) => {
@@ -57,6 +58,14 @@ export const ContactList = ({ contacts, deleteContactHandle }) => {
         >
           Clear
         </button>
+      ) : (
+        ''
+      )}
+      {useSelector(selectContactsAreLoading) ? (
+        <>
+          <br />
+          Loading changes...
+        </>
       ) : (
         ''
       )}

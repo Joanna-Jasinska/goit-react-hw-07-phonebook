@@ -13,6 +13,17 @@ const handleRejected = (state, action) => {
 const handlePending = state => {
   state.isLoading = true;
 };
+const deleteContactByIdPending = state => {
+  state.isLoading = true;
+  // state.contacts = [
+  //   { name: 'x', number: 'x', id: 'x', deleting: true },
+  //   ...state.contacts.filter(item => item.id !== action.payload.id),
+  //   {
+  //     ...state.contacts.filter(item => item.id == action.payload.id)[0],
+  //     deleting: true,
+  //   },
+  // ];
+};
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
@@ -25,7 +36,7 @@ const contactsSlice = createSlice({
       state.contacts = action.payload;
     },
 
-    [deleteContactById.pending]: handlePending,
+    [deleteContactById.pending]: deleteContactByIdPending,
     [deleteContactById.rejected]: handleRejected,
     [deleteContactById.fulfilled](state, action) {
       state.isLoading = false;
