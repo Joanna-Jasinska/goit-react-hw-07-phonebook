@@ -8,6 +8,7 @@
   border: var(--border);
   border-radius: var(--border-radius);
   width: 100%;
+  max-width: 960px;
   box-sizing: border-box;
 }
 .form {
@@ -73,10 +74,10 @@
   flex-wrap: wrap; */
 }
 .entry {
-  /* box-shadow: var(--box-shadow-inset); */
+  box-shadow: var(--box-shadow-inset);
   margin: var(--margin-component);
-  /* border: var(--border-inset); */
-  /* border-radius: var(--border-radius); */
+  border: var(--border-inset);
+  border-radius: var(--border-radius);
   padding: 0px 0.7em;
 
   display: inline-block;
